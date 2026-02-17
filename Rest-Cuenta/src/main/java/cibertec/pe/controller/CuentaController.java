@@ -39,10 +39,10 @@ public class CuentaController {
 		return cuentaService.editarCuenta(codUsuario, cuenta);
 	}
 	
-	@DeleteMapping("/deleteCuenta/{codUsuario}")
-	public String deleteCuenta(@PathVariable String codUsuario) {
-		cuentaService.eliminarCuenta(codUsuario);
-		return "Cuenta eliminada correctamente";
+	@DeleteMapping("/deleteCuentaByAlumno/{codAlumno}")
+	public String deleteCuentaByAlumno(@PathVariable int codAlumno) {
+		cuentaService.eliminarCuentaPorAlumno(codAlumno);
+		return "Cuenta del alumno eliminada correctamente";
 	}
 	
 	@PostMapping("/login")

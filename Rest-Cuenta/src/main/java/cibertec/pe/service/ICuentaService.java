@@ -12,4 +12,5 @@ public interface ICuentaService {
 	public String editarCuenta(String codUsuario, Cuenta cuenta);
 	public void eliminarCuenta(String codUsuario);
 	public String validarLogin(String codUsuario, String contrasena);
+	public void eliminarCuentaPorAlumno(int codAlumno);
 }

@@ -59,4 +59,13 @@ public class CuentaImplement implements ICuentaService {
 			return "Usuario o contraseña incorrectos";
 		}
 	}
+	
+	
+	@Override
+	public void eliminarCuentaPorAlumno(int codAlumno) {
+		Cuenta cuenta = cuentaRepository.findByCodAlumno(codAlumno);
+		if(cuenta != null) {
+			cuentaRepository.delete(cuenta);
+		}
+	}
 }

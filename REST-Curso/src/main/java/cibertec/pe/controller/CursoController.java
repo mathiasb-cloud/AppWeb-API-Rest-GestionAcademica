@@ -29,24 +29,25 @@ public class CursoController {
 		return cursoService.crearCurso(curso);
 	}	
 	
-	@PutMapping("/asignarDocente/{nroCurso}/{codAlumno}")
-	public String asignarAlumnoACurso(@PathVariable int nroCurso, @PathVariable int codAlumno) {
-		return cursoService.asignarDocente(nroCurso, codAlumno);
-	}
-	
 	@GetMapping("/byCodDocente/{codigo}")
-	public List<Curso> listarCursoByCodAlumno(@PathVariable int codigo){
+	public List<Curso> listarCursoByCodDocente(@PathVariable int codigo){
 		return cursoService.listarCursoByCodDocente(codigo);
-	}
-	
-	@PutMapping("/editCurso/{nroCurso}")
-	public String editCurso(@PathVariable int nroCurso, @RequestBody Curso curso) {
-		return cursoService.editarCurso(nroCurso, curso);
 	}
 	
 	@DeleteMapping("/deleteCurso/{nroCurso}")
 	public String deleteCurso(@PathVariable int nroCurso) {
 		cursoService.eliminarCurso(nroCurso);
 		return "Curso eliminado correctamente";
+	}
+	
+	@PutMapping("/asignarDocente/{nroCurso}/{codDocente}")
+	public String asignarDocente(@PathVariable int nroCurso, @PathVariable int codDocente) {
+		return cursoService.asignarDocente(nroCurso, codDocente);
+	}
+	
+	
+	@PutMapping("/editCurso/{nroCurso}")
+	public String editCurso(@PathVariable int nroCurso, @RequestBody Curso curso) {
+		return cursoService.editarCurso(nroCurso, curso);
 	}
 }

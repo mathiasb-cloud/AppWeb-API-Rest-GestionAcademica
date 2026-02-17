@@ -1,6 +1,7 @@
 package cibertec.pe.controller;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,5 +38,12 @@ public class DocenteController {
 	@PostMapping("/createCurso/{codigo}")
 	public Curso crearCurso(@PathVariable int codigo, @RequestBody Curso curso) {
 		return docenteService.crearCurso(codigo, curso);	
+	}
+	
+	
+	@DeleteMapping("/deleteDocente/{codigo}")
+	public String deleteDocente(@PathVariable int codigo) {
+		docenteService.eliminarDocente(codigo);
+		return "Docente eliminado correctamente";
 	}
 }

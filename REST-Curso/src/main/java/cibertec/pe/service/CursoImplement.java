@@ -23,6 +23,38 @@ public class CursoImplement implements ICursoService {
 	}
 	
 	@Override
+	public Optional<Curso> buscarCurso(int codigo) {
+		return cursoRepository.findById(codigo);
+	}
+	
+	@Override
+	public String editarCurso(int nroCurso, Curso curso) {
+		Curso cur = cursoRepository.findById(nroCurso).orElse(null);
+		if(cur != null) {
+			cur.setNomCurso(curso.getNomCurso());
+			cur.setCiclo(curso.getCiclo());
+			
+			if(curso.getCodDocente() != null) {
+				cur.setCodDocente(curso.getCodDocente());
+			}
+			cursoRepository.save(cur);
+			return "Curso actualizado";
+		} else {
+			return "Error: Curso no encontrado";
+		}
+	}
+	
+	@Override
+	public void eliminarCurso(int codigo) {
+		cursoRepository.deleteById(codigo);	
+	}
+	
+	@Override
+	public List<Curso> listarCursoByCodDocente(int codDocente) {
+		return cursoRepository.findByCodDocente(codDocente);
+	}
+	
+	@Override
 	public String asignarDocente(int nroCurso, int codDocente) {
 		Curso curso = cursoRepository.findById(nroCurso).orElse(null);
 		if(curso != null) {
@@ -32,31 +64,5 @@ public class CursoImplement implements ICursoService {
 		} else {
 			return "Error: Curso no encontrado";
 		}
-	}
-	
-	@Override
-	public Optional<Curso> buscarCurso(int codigo) {
-		return cursoRepository.findById(codigo);
-	}
-	
-	@Override
-	public String editarCurso(int codigo, Curso curso) {
-		Curso cur = cursoRepository.findById(codigo).get();
-		if(cur != null) {
-			cur.setNomCurso(curso.getNomCurso());
-			cur.setCiclo(curso.getCiclo());
-			cursoRepository.save(cur);
-			return "Curso actualizado";
-		} else return "Error";
-	}
-	
-	@Override
-	public void eliminarCurso(int codigo) {
-		cursoRepository.deleteById(codigo);	
-	}
-	
-	@Override
-	public List<Curso> listarCursoByCodDocente(int codigoDocente) {
-		return cursoRepository.findByCodDocente(codigoDocente);
 	}
 }

@@ -9,6 +9,5 @@ import cibertec.pe.model.Usuario;
 
 
 public interface IUsuarioRepository extends JpaRepository<Usuario, Integer> {
-
-	Optional<Usuario>  findByEmail(String email);
+    Optional<Usuario> findByEmail(String email);
 }

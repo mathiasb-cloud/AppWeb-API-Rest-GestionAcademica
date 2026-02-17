@@ -1,7 +1,8 @@
 package cibertec.pe.service;
 import java.util.List;
 import java.util.Optional;
-import cibertec.pe.entity.Curso;
+
+import cibertec.pe.entity.Cuenta;
 import cibertec.pe.model.Alumno;
 
 public interface IAlumnoService {
@@ -12,5 +13,8 @@ public interface IAlumnoService {
 	public String editarAlumno(int codigo, Alumno alumno);
 	public void eliminarAlumno(int codigo);
 	
-	public Curso crearCurso(int codAlumno, Curso curso);
+	
+	public Cuenta crearAlumnoConCuenta(Alumno alumno, Cuenta cuenta);
+	
+	
 }

@@ -25,7 +25,7 @@ public class Curso {
 		this.codDocente = codDocente;
 	}
 	
-	public Curso(String nomCurso, String ciclo) { 
+	public Curso(String nomCurso, String ciclo) {
 		this.nomCurso = nomCurso;
 		this.ciclo = ciclo;
 	}
@@ -54,11 +54,10 @@ public class Curso {
 		this.ciclo = ciclo;
 	}
 	
-	
 	public Integer getCodDocente() {
 		return codDocente;
 	}
-
+	
 	public void setCodDocente(Integer codDocente) {
 		this.codDocente = codDocente;
 	}	

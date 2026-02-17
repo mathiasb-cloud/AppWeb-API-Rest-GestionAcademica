@@ -2,6 +2,9 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\Users\WIN-10\Documents\ProyectoDAWII\Rest-Cuenta"/>
+			<item value="C:\Users\WIN-10\Documents\ProyectoDAWII\Rest-Docente"/>
+			<item value="C:\Users\WIN-10\Documents\ProyectoDAWII\REST-Alumno"/>
 			<item value="C:\Users\WIN-10\Documents\ProyectoDAWII\Identity-Service"/>
 			<item value="C:\Users\WIN-10\Documents\ProyectoDAWII\REST-Cuenta"/>
 			<item value="C:\Users\WIN-10\Documents\ProyectoDAWII\REST-Employee"/>
