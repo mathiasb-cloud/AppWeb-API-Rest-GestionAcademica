@@ -1,0 +1,53 @@
+package cibertec.pe.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import cibertec.pe.model.Curso;
+import cibertec.pe.repository.ICuentaRepository;
+
+@Service
+public class CuentaImplement implements ICuentaService {
+	
+	@Autowired
+	private ICuentaRepository cuentaRepository;
+
+	@Override
+	public List<Curso> listarCuentas() {
+		return cuentaRepository.findAll();
+	}
+
+	@Override
+	public Curso crearCuenta(Curso cuenta) {
+		return cuentaRepository.save(cuenta);
+	}
+
+	@Override
+	public Optional<Curso> buscarCuenta(int codigo) {
+		return cuentaRepository.findById(codigo);
+	}
+
+	@Override
+	public String editarCuenta(int codigo, Curso cuenta) {
+		Curso cta = cuentaRepository.findById(codigo).get();
+		if(cta != null) {
+			cta.setBanco(cuenta.getBanco());
+			cta.setTipo(cuenta.getTipo());
+			cuentaRepository.save(cta);
+			return "Cuenta actualizada";
+		} else return "Error";
+	}
+
+	@Override
+	public void eliminarCuenta(int codigo) {
+		cuentaRepository.deleteById(codigo);	
+	}
+
+	@Override
+	public List<Curso> listarCuentaByCodEmployee(int codigoEmployee) {
+		return cuentaRepository.findByCodEmployee(codigoEmployee);
+	}
+}

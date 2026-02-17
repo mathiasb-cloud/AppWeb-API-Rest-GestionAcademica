@@ -1,0 +1,17 @@
+package cibertec.pe.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import cibertec.pe.model.Curso;
+
+public interface ICursoService {
+	
+	public List<Curso> listarCuentas();
+	public Curso crearCuenta(Curso cuenta);
+	public Optional<Curso> buscarCuenta(int codigo);
+	public String editarCuenta(int codigo, Curso cuenta);
+	public void eliminarCuenta(int codigo);
+	
+	public List<Curso> listarCuentaByCodEmployee(int codigoEmployee);
+}

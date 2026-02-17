@@ -1,0 +1,62 @@
+package cibertec.pe.service;
+
+import java.util.List;
+import java.util.Optional;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import cibertec.pe.entity.Cuenta;
+import cibertec.pe.feignclient.CuentaFeignClient;
+import cibertec.pe.model.Alumno;
+import cibertec.pe.repository.IEmployeeRepository;
+
+@Service
+public class EmployeeImplement implements IEmployeeService {
+	
+	@Autowired
+	private IEmployeeRepository empRepository;
+	
+	@Autowired
+	private CuentaFeignClient cuentaFeign;
+
+	@Override
+	public List<Alumno> listarEmployees() {
+		return empRepository.findAll();
+	}
+
+	@Override
+	public Alumno crearEmployee(Alumno employee) {
+		return empRepository.save(employee);
+	}
+
+	@Override
+	public Optional<Alumno> buscarEmployee(int codigo) {
+		return empRepository.findById(codigo);
+	}
+
+	@Override
+	public String editarEmployee(int codigo, Alumno employee) {
+		Alumno empl = empRepository.findById(codigo).get();
+		if(empl != null) {
+			empl.setNomEmployee(employee.getNomEmployee());
+			empl.setApeEmployee(employee.getApeEmployee());
+			empl.setEmaEmployee(employee.getEmaEmployee());
+			
+			empRepository.save(empl);
+			return "Empleado actualizado";
+		} else return "Error";
+	}
+
+	@Override
+	public void eliminarEmployee(int codigo) {
+		empRepository.deleteById(codigo);	
+	}
+
+	@Override
+	public Cuenta crearCta(int codEmployee, Cuenta cuenta) {
+		cuenta.setCodEmployee(codEmployee);
+		return cuentaFeign.crearCta(cuenta);
+	}
+}

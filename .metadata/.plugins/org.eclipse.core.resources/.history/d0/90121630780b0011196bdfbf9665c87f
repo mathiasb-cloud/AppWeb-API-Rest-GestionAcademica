@@ -1,0 +1,67 @@
+package cibertec.pe.model;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "tblCuenta")
+
+public class Curso {	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int nroCta;
+	private String banco;
+	private String tipo;
+	private int codEmployee;
+	
+	public Curso() {
+	}
+
+	public Curso(int nroCta, String banco, String tipo, int codEmployee) {
+		this.nroCta = nroCta;
+		this.banco = banco;
+		this.tipo = tipo;
+		this.codEmployee = codEmployee;
+	}
+
+	public Curso(String banco, String tipo, int codEmployee) {
+		this.banco = banco;
+		this.tipo = tipo;
+		this.codEmployee = codEmployee;
+	}
+
+	public int getNroCta() {
+		return nroCta;
+	}
+
+	public void setNroCta(int nroCta) {
+		this.nroCta = nroCta;
+	}
+
+	public String getBanco() {
+		return banco;
+	}
+
+	public void setBanco(String banco) {
+		this.banco = banco;
+	}
+
+	public String getTipo() {
+		return tipo;
+	}
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+	public int getCodEmployee() {
+		return codEmployee;
+	}
+
+	public void setCodEmployee(int codEmployee) {
+		this.codEmployee = codEmployee;
+	}	
+}
