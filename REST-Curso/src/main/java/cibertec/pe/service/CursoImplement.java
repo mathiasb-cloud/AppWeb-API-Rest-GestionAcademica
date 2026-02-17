@@ -23,12 +23,12 @@ public class CursoImplement implements ICursoService {
 	}
 	
 	@Override
-	public String asignarAlumno(int nroCurso, int codAlumno) {
+	public String asignarDocente(int nroCurso, int codDocente) {
 		Curso curso = cursoRepository.findById(nroCurso).orElse(null);
 		if(curso != null) {
-			curso.setCodAlumno(codAlumno);
+			curso.setCodDocente(codDocente);
 			cursoRepository.save(curso);
-			return "Alumno asignado al curso correctamente";
+			return "Docente asignado al curso correctamente";
 		} else {
 			return "Error: Curso no encontrado";
 		}
@@ -56,7 +56,7 @@ public class CursoImplement implements ICursoService {
 	}
 	
 	@Override
-	public List<Curso> listarCursoByCodAlumno(int codigoAlumno) {
-		return cursoRepository.findByCodAlumno(codigoAlumno);
+	public List<Curso> listarCursoByCodDocente(int codigoDocente) {
+		return cursoRepository.findByCodDocente(codigoDocente);
 	}
 }

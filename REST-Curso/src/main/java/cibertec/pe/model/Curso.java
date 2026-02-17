@@ -13,16 +13,16 @@ public class Curso {
 	private int nroCurso;
 	private String nomCurso;
 	private String ciclo;
-	private Integer codAlumno;  
+	private Integer codDocente;  
 	
 	public Curso() {
 	}
 	
-	public Curso(int nroCurso, String nomCurso, String ciclo, Integer codAlumno) {
+	public Curso(int nroCurso, String nomCurso, String ciclo, Integer codDocente) {
 		this.nroCurso = nroCurso;
 		this.nomCurso = nomCurso;
 		this.ciclo = ciclo;
-		this.codAlumno = codAlumno;
+		this.codDocente = codDocente;
 	}
 	
 	public Curso(String nomCurso, String ciclo) { 
@@ -54,11 +54,12 @@ public class Curso {
 		this.ciclo = ciclo;
 	}
 	
-	public Integer getCodAlumno() {  
-		return codAlumno;
-	}
 	
-	public void setCodAlumno(Integer codAlumno) { 
-		this.codAlumno = codAlumno;
+	public Integer getCodDocente() {
+		return codDocente;
+	}
+
+	public void setCodDocente(Integer codDocente) {
+		this.codDocente = codDocente;
 	}	
 }

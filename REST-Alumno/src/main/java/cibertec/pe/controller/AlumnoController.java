@@ -34,8 +34,5 @@ public class AlumnoController {
 		return alumnoService.editarAlumno(codigo, alumno);
 	}
 	
-	@PostMapping("/createCurso/{codigo}")
-	public Curso crearCurso(@PathVariable int codigo, @RequestBody Curso curso) {
-		return alumnoService.crearCurso(codigo, curso);	
-	}
+	
 }

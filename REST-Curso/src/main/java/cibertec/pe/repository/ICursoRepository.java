@@ -4,5 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import cibertec.pe.model.Curso;
 
 public interface ICursoRepository extends JpaRepository<Curso, Integer> {
-	List<Curso> findByCodAlumno(int codAlumno);	
+	List<Curso> findByCodDocente(int codDocente);	
 }

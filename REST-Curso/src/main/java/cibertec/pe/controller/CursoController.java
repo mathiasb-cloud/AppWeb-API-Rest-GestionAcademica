@@ -29,14 +29,19 @@ public class CursoController {
 		return cursoService.crearCurso(curso);
 	}	
 	
-	@PutMapping("/asignarAlumno/{nroCurso}/{codAlumno}")
+	@PutMapping("/asignarDocente/{nroCurso}/{codAlumno}")
 	public String asignarAlumnoACurso(@PathVariable int nroCurso, @PathVariable int codAlumno) {
-		return cursoService.asignarAlumno(nroCurso, codAlumno);
+		return cursoService.asignarDocente(nroCurso, codAlumno);
 	}
 	
-	@GetMapping("/byCodAlumno/{codigo}")
+	@GetMapping("/byCodDocente/{codigo}")
 	public List<Curso> listarCursoByCodAlumno(@PathVariable int codigo){
-		return cursoService.listarCursoByCodAlumno(codigo);
+		return cursoService.listarCursoByCodDocente(codigo);
+	}
+	
+	@PutMapping("/editCurso/{nroCurso}")
+	public String editCurso(@PathVariable int nroCurso, @RequestBody Curso curso) {
+		return cursoService.editarCurso(nroCurso, curso);
 	}
 	
 	@DeleteMapping("/deleteCurso/{nroCurso}")

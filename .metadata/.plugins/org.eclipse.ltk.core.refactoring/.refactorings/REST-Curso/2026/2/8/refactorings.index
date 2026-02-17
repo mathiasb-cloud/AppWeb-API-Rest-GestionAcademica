@@ -5,3 +5,4 @@
 1771274423986	Rename compilation unit 'ICuentaRepository.java'
 1771274451101	Rename compilation unit 'CuentaImplement.java'
 1771274465487	Rename type 'ICuentaService'
+1771294390086	Encapsulate field 'codDocente, ...'
