@@ -1,19 +1,25 @@
 package cibertec.pe.service;
-
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import cibertec.pe.feignClient.AlumnoFeignClient;
+import cibertec.pe.feignClient.CursoFeignClient;
 import cibertec.pe.model.Matricula;
 import cibertec.pe.repository.MatriculaRepository;
+import feign.FeignException;
 
 @Service
 public class MatriculaImplement implements IMatriculaService {
 
     @Autowired
     private MatriculaRepository matriculaRepository;
+    
+    @Autowired
+    private AlumnoFeignClient alumnoClient;
+    
+    @Autowired
+    private CursoFeignClient cursoClient;
 
     @Override
     public List<Matricula> listarMatriculas() {
@@ -22,6 +28,25 @@ public class MatriculaImplement implements IMatriculaService {
 
     @Override
     public Matricula crearMatricula(Matricula matricula) {
+        
+        try {
+            alumnoClient.obtenerAlumno(matricula.getCodAlumno());
+        } catch (FeignException.NotFound e) {
+            throw new RuntimeException("Error: El alumno con código " + matricula.getCodAlumno() + " no existe");
+        } catch (Exception e) {
+            throw new RuntimeException("Error al validar el alumno: " + e.getMessage());
+        }
+        
+        
+        try {
+            cursoClient.obtenerCurso(matricula.getCodCurso());
+        } catch (FeignException.NotFound e) {
+            throw new RuntimeException("Error: El curso con código " + matricula.getCodCurso() + " no existe");
+        } catch (Exception e) {
+            throw new RuntimeException("Error al validar el curso: " + e.getMessage());
+        }
+        
+        
         return matriculaRepository.save(matricula);
     }
 
@@ -32,22 +57,17 @@ public class MatriculaImplement implements IMatriculaService {
 
     @Override
     public String editarMatricula(int id, Matricula matricula) {
-
-        Optional<Matricula> existente = matriculaRepository.findById(id);
-
-        if (existente.isPresent()) {
-            Matricula m = existente.get();
-
-            m.setCodAlumno(matricula.getCodAlumno());
-            m.setCodCurso(matricula.getCodCurso());
-            m.setFechaMatricula(matricula.getFechaMatricula());
-            m.setEstado(matricula.getEstado());
-
-            matriculaRepository.save(m);
-            return "Matrícula actualizada correctamente";
+        Matricula mat = matriculaRepository.findById(id).orElse(null);
+        if (mat != null) {
+            mat.setCodAlumno(matricula.getCodAlumno());
+            mat.setCodCurso(matricula.getCodCurso());
+            mat.setFechaMatricula(matricula.getFechaMatricula());
+            mat.setEstado(matricula.getEstado());
+            matriculaRepository.save(mat);
+            return "Matrícula actualizada";
+        } else {
+            return "Error: Matrícula no encontrada";
         }
-
-        return "Matricula no encontrada";
     }
 
     @Override
@@ -64,5 +84,4 @@ public class MatriculaImplement implements IMatriculaService {
     public List<Matricula> listarPorCurso(int cursoId) {
         return matriculaRepository.findByCodCurso(cursoId);
     }
-
 }

@@ -1,6 +1,8 @@
 package cibertec.pe.controller;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,10 +43,20 @@ public class AlumnoController {
 		return alumnoService.crearAlumnoConCuenta(request.getAlumno(), request.getCuenta());
 	}
 	
-	
 	@DeleteMapping("/deleteAlumno/{codigo}")
 	public String deleteAlumno(@PathVariable int codigo) {
 		alumnoService.eliminarAlumno(codigo);
 		return "Alumno y su cuenta eliminados correctamente";
+	}
+	
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<Alumno> getAlumnoById(@PathVariable int id) {
+		Optional<Alumno> alumno = alumnoService.buscarAlumno(id);
+		if (alumno.isPresent()) {
+			return ResponseEntity.ok(alumno.get());
+		} else {
+			return ResponseEntity.notFound().build();
+		}
 	}
 }

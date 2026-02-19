@@ -1,6 +1,9 @@
 package cibertec.pe.controller;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -49,5 +52,16 @@ public class CursoController {
 	@PutMapping("/editCurso/{nroCurso}")
 	public String editCurso(@PathVariable int nroCurso, @RequestBody Curso curso) {
 		return cursoService.editarCurso(nroCurso, curso);
+	}
+	
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<Curso> getCursoById(@PathVariable int id) {
+		Optional<Curso> curso = cursoService.buscarCurso(id);
+		if (curso.isPresent()) {
+			return ResponseEntity.ok(curso.get());
+		} else {
+			return ResponseEntity.notFound().build();
+		}
 	}
 }
