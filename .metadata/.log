@@ -4823,3 +4823,12 @@ Caused by: org.eclipse.lsp4j.jsonrpc.ResponseErrorException: Internal error.
 
 !ENTRY org.eclipse.m2e.logback.appender 2 0 2026-02-20 21:34:34.276
 !MESSAGE Direct modification of testCompileSourceRoots through add() is deprecated and will not work in Maven 4.0.0. Please use the add/remove methods instead. If you're using a plugin that causes this warning, please upgrade to the latest version and report an issue if the warning persists. To disable these warnings, set -Dmaven.project.sourceRoots.warningsDisabled=true on the command line, in the .mvn/maven.config file, or in project POM properties.
+
+!ENTRY org.eclipse.jdt.ui 4 10001 2026-02-20 21:41:01.353
+!MESSAGE Cannot find semantic highlighting for SemanticToken[ofset=1621, length=7, tokenType=METHOD]
+
+!ENTRY org.eclipse.jdt.ui 4 10001 2026-02-20 21:41:01.355
+!MESSAGE Cannot find semantic highlighting for SemanticToken[ofset=1975, length=7, tokenType=METHOD]
+
+!ENTRY org.eclipse.lsp4e 2 0 2026-02-20 22:11:30.286
+!MESSAGE LS Hover Html and JDT hover html were naively concatenated as LS hover HTML BODY tag wasn't found
